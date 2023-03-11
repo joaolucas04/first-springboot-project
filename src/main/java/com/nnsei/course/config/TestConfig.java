@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.nnsei.course.entities.Order;
 import com.nnsei.course.entities.User;
+import com.nnsei.course.entities.enums.OrderStatus;
 import com.nnsei.course.repositories.OrderRepository;
 import com.nnsei.course.repositories.UserRepository;
 
@@ -33,12 +34,12 @@ public class TestConfig implements CommandLineRunner {
 		User u5 = new User(null, "Umji", "umji@gmail.com", "13423098", "umjiviviz");
 		User u6 = new User(null, "Eunha", "eunha@gmail.com", "432890432", "eunha321");
 		
-		Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1);
-		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2);
-		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), u3);
-		Order o4 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u4);
-		Order o5 = new Order(null, Instant.parse("2019-01-21T03:42:10Z"), u5);
-		Order o6 = new Order(null, Instant.parse("2019-03-22T15:21:22Z"), u6);
+		Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u1, OrderStatus.CANCELLED);
+		Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), u2, OrderStatus.WAITING_PAYMENT);
+		Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), u3, OrderStatus.PAID);
+		Order o4 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), u4, OrderStatus.SHIPPED);
+		Order o5 = new Order(null, Instant.parse("2019-01-21T03:42:10Z"), u5, OrderStatus.DELIVERED);
+		Order o6 = new Order(null, Instant.parse("2019-03-22T15:21:22Z"), u6, OrderStatus.DELIVERED);
 		
 		
 		userRepository.saveAll(Arrays.asList(u1, u2, u3, u4, u5, u6));
